@@ -1,0 +1,28 @@
+[
+  {
+    "image": "/Images/webpageImage.jpg",
+    "title": "Website Development",
+    "description": "Responsive websites, performance optimised, SEO-ready, and accessible."
+  },
+  {
+    "image": "/Images/customSoftwareImag.jpg",
+    "title": "Custom Software",
+    "description": "Custom applications, APIs, integrations and scalable backend systems."
+  },
+  {
+    "image": "/Images/marketingImage.jpg",
+    "title": "Social Media & Marketing",
+    "description": "Content strategy, production, campaign management and growth tracking."
+  },
+  {
+    "image":"/Images/SchedulingImag.jpg",
+    "title": "Scheduling & Automation",
+    "description": "In-house scheduling systems, workflow automation, and calendar integrations."
+  },
+ 
+  {
+    "image": "/Images/UIUXDesign.jpg",
+    "title": "UX / UI Design",
+    "description": "User-centred design, prototypes, user testing, and design systems."
+  }
+]
