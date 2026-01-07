@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         {/* Logo */}
         <div>
-          <Image src="/Images/logo.png" alt="Image" width={100} height={100} className="mr-2 rounded mb-4 md:mb-0 animate-fade-in" />
+          <Image src="/Images/logo.jpg" alt="Image" width={100} height={100} className="mr-2 rounded mb-4 md:mb-0 animate-fade-in" />
         </div>
         {/* Contact Details */}
         <div className="mb-4 md:mb-0 text-center md:text-left">

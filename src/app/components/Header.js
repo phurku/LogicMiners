@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className=" bg-primary text-white p-4 flex flex-col md:flex-row items-center justify-between fixed top-0 left-0 w-full z-50 shadow-lg">
       <div className="flex items-center mb-2 md:mb-0 container">
-        <Image src="/Images/logo.png" alt="Logo" width={40} height={40} className="mr-2 rounded animate-fade-in" />
+        <Image src="/Images/logo.jpg" alt="Logo" width={40} height={40} className="mr-2 rounded animate-fade-in" />
         <h1 className="text-2xl font-bold">Logic Miners</h1>
       </div>
       <nav>
