@@ -8,7 +8,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-primary text-white p-4 flex flex-col md:flex-row items-center justify-between fixed top-0 left-0 w-full z-50 shadow-lg">
+    <header className="bg-primary text-white p-4 flex flex-col md:flex-row items-center justify-between fixed top-0 left-0 w-full z-50 shadow-2xl border-b-4 border-transparent hover:border-white transition-all duration-500">
       <div className="flex items-center mb-2 md:mb-0 container w-full justify-between">
         <div className="flex items-center">
           <Image src="/Images/logo.jpg" alt="Logo" width={40} height={40} className="mr-2 rounded animate-fade-in" />

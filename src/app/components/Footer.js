@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white py-8 mt-12">
+    <footer className="bg-primary text-white py-8 mt-12 shadow-2xl border-t-4 border-transparent hover:border-white transition-all duration-500">
       <div className="container mx-auto flex flex-col md:flex-row items-start md:items-center justify-between px-4">
         {/* Logo on the left corner */}
         <div className="flex flex-col items-start md:items-start flex-shrink-0 mb-6 md:mb-0 md:w-1/4">

@@ -22,7 +22,7 @@ export default async function Home() {
           </div>
           <div className="flex-1 flex justify-center animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
             <div className="relative group">
-              <video src="/Images/homepageVideo.mp4" controls autoPlay loop muted className="rounded-xl shadow-lg w-full max-w-2xl h-80 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <video src="/Images/homepageVideo.mp4" controls autoPlay loop muted className="rounded-xl shadow-lg w-full max-w-2xxl h-90 object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
           </div>
         </section>
