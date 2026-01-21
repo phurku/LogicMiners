@@ -13,7 +13,7 @@ export default async function Home() {
     <div className='container text-gray-700'>
       <main>
         {/* Home Section */}
-        <section id="home" className="mb-16 flex flex-col md:flex-row items-center gap-8 animate-fade-in-up group">
+        <section id="home" className="mb-16 flex flex-col md:flex-row items-center animate-fade-in-up group">
           <div className="flex-1 animate-fade-in-up group-hover:scale-105 transition-transform duration-500" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
             <div className="text-center p-8 bg-white rounded shadow animate-fade-in hover:shadow-xl transition-shadow duration-300" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
               <h1 className="text-4xl font-bold mb-4 animate-fade-in-up hover:text-primary transition-colors duration-300" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Welcome to Logic Miners</h1>
@@ -22,7 +22,7 @@ export default async function Home() {
           </div>
           <div className="flex-1 flex justify-center animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
             <div className="relative group">
-              <video src="/Images/homepageVideo.mp4" controls autoPlay loop muted className="rounded-xl shadow-lg w-full max-w-2xxl h-90 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <video src="/Images/homepageVideo.mp4" controls autoPlay loop muted className="rounded-xl shadow-lg w-72 h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
           </div>
         </section>
