@@ -1,17 +1,9 @@
 [
   {
-    "image": "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=1000",
-    "title": "Mine Management Portal",
-    "description": "A web platform for managing mining operations, scheduling, and reporting."
-  },
-  {
-    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000",
-    "title": "Automation Dashboard",
-    "description": "Real-time dashboard for monitoring and automating mining equipment."
-  },
-  {
-    "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1000",
-    "title": "Analytics Suite",
-    "description": "Data analytics tools for actionable insights and performance tracking."
+    "image": "./Images/Nuvision.png",
+    "title": "NUVision Driving School ",
+    "description": "A comprehensive web platform for driving license applications, renewals, and management services."
   }
+  
+  
 ]
