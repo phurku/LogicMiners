@@ -14,17 +14,17 @@ export function SectionHeading({
   centered = true,
 }: SectionHeadingProps) {
   return (
-    <div className={`${centered ? 'text-center' : ''} space-y-4`}>
+    <div className={`${centered ? 'text-center' : ''} space-y-4 animate-reveal-up`}>
       {pretitle && (
-        <p className="text-sm font-semibold text-accent uppercase tracking-widest">
+        <p className="text-xs md:text-sm font-black text-primary uppercase tracking-[0.3em]">
           {pretitle}
         </p>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground leading-tight tracking-tight">
         {title}
       </h2>
       {description && (
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+        <p className={`text-lg text-muted-foreground leading-relaxed max-w-2xl ${centered ? 'mx-auto' : ''}`}>
           {description}
         </p>
       )}

@@ -6,93 +6,118 @@ import { ArrowRight, Lightbulb } from 'lucide-react';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden bg-gradient-to-b from-background via-card to-background">
+    <section className="relative min-h-[600px] md:min-h-[800px] flex items-center overflow-hidden bg-gradient-to-b from-background via-card/30 to-background">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute top-1/2 -left-40 w-80 h-80 bg-accent-alt/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6 animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20">
+          <div className="space-y-8 animate-reveal-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-md animate-glow">
               <Lightbulb className="h-4 w-4 text-accent" />
-              <span className="text-sm font-medium text-accent">Digital Growth</span>
+              <span className="text-sm font-medium text-accent">Digital Innovation</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              Digital Solutions That Drive{' '}
-              <span className="text-accent">Real Results</span>
-            </h1>
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight tracking-tight">
+                Digital Solutions <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient-x">
+                  That Drive Growth
+                </span>
+              </h1>
 
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              We create websites, develop custom software, and execute digital marketing strategies that help your business grow online and reach more customers.
-            </p>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
+                We craft high-performance websites, custom software, and digital strategies that transform your business potential into reality.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold hover:shadow-[0_0_20px_rgba(109,40,217,0.4)] transition-all duration-300 transform hover:-translate-y-1"
               >
                 Get Started
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl glass glass-hover text-foreground font-bold"
               >
                 View Projects
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="flex gap-8 pt-8 border-t border-border/40">
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-accent">50+</div>
-                <p className="text-sm text-muted-foreground">Projects Completed</p>
+            <div className="flex gap-12 pt-8 border-t border-border/40">
+              <div className="animate-reveal-up delay-100">
+                <div className="text-3xl md:text-4xl font-black text-accent">50+</div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Completed</p>
               </div>
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-accent">30+</div>
-                <p className="text-sm text-muted-foreground">Happy Clients</p>
+              <div className="animate-reveal-up delay-200">
+                <div className="text-3xl md:text-4xl font-black text-primary">30+</div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Happy Clients</p>
               </div>
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-accent">8+</div>
-                <p className="text-sm text-muted-foreground">Years Experience</p>
+              <div className="animate-reveal-up delay-300">
+                <div className="text-3xl md:text-4xl font-black text-accent-alt">8+</div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Experience</p>
               </div>
             </div>
           </div>
 
           {/* Right Visual */}
-          <div className="relative h-[400px] md:h-[600px] animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-alt/20 rounded-2xl blur-xl" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
-                <Image
-                  src="/logo.png"
-                  alt="Logic Miners"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                  priority
-                />
+          <div className="relative h-[400px] md:h-[650px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/20 rounded-full blur-[100px] animate-pulse" />
+            <div className="relative w-72 h-72 md:w-96 md:h-96 animate-float">
+              <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-20" />
+              <Image
+                src="/logo.png"
+                alt="Logic Miners"
+                fill
+                className="object-contain drop-shadow-[0_0_50px_rgba(109,40,217,0.5)] z-20"
+                priority
+              />
+            </div>
+
+            {/* Floating cards - Enhanced with Glassmorphism */}
+            <div className="absolute top-10 right-0 p-4 rounded-2xl glass glass-hover shadow-2xl animate-reveal-up delay-200">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                  <div className="h-4 w-4 rounded-full bg-primary" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-primary mb-0.5">Software</p>
+                  <p className="text-sm font-semibold text-foreground">Custom Solutions</p>
+                </div>
               </div>
             </div>
 
-            {/* Floating cards */}
-            <div className="absolute top-10 right-10 p-4 rounded-lg bg-card border border-border/40 backdrop-blur-sm shadow-lg animate-slide-up">
-              <p className="text-xs font-semibold text-accent mb-1">Custom Software</p>
-              <p className="text-sm text-foreground">Tailored Solutions</p>
+            <div className="absolute bottom-20 -left-5 p-4 rounded-2xl glass glass-hover shadow-2xl animate-reveal-up delay-400">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-accent/20 flex items-center justify-center">
+                  <div className="h-4 w-4 rounded-full bg-accent" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-accent mb-0.5">Automation</p>
+                  <p className="text-sm font-semibold text-foreground">Streamlined</p>
+                </div>
+              </div>
             </div>
 
-            <div className="absolute bottom-20 left-10 p-4 rounded-lg bg-card border border-border/40 backdrop-blur-sm shadow-lg animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <p className="text-xs font-semibold text-accent mb-1">Automation</p>
-              <p className="text-sm text-foreground">Streamlined Ops</p>
-            </div>
-
-            <div className="absolute bottom-10 right-20 p-4 rounded-lg bg-card border border-border/40 backdrop-blur-sm shadow-lg animate-slide-up" style={{ animationDelay: '0.4s' }}>
-              <p className="text-xs font-semibold text-accent mb-1">Web Development</p>
-              <p className="text-sm text-foreground">Modern Tech</p>
+            <div className="absolute bottom-0 right-10 p-4 rounded-2xl glass glass-hover shadow-2xl animate-reveal-up delay-500">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-accent-alt/20 flex items-center justify-center">
+                  <div className="h-4 w-4 rounded-full bg-accent-alt" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-accent-alt mb-0.5">Web Design</p>
+                  <p className="text-sm font-semibold text-foreground">Modern Tech</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
