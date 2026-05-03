@@ -1,29 +1,27 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Logic Miners Brand Colors - Electric Midnight */
-  --background: #0B0D17;
-  --foreground: #F9FAFB;
-  --card: #161B2E;
-  --card-foreground: #F9FAFB;
-  --popover: #161B2E;
-  --popover-foreground: #F9FAFB;
+  /* Light Mode Variables */
+  --background: #FFFFFF;
+  --foreground: #0B0D17;
+  --card: #F8FAFC;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
   --primary: #6D28D9;
   --primary-foreground: #FFFFFF;
-  --secondary: #4C1D95;
-  --secondary-foreground: #FFFFFF;
-  --muted: #1F2937;
-  --muted-foreground: #9CA3AF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #1E293B;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
   --accent: #10B981;
-  --accent-foreground: #0B0D17;
+  --accent-foreground: #FFFFFF;
   --accent-alt: #F59E0B;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #2D3748;
-  --input: #1F2937;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
   --ring: #6D28D9;
   --radius: 0.75rem;
 }
@@ -156,7 +154,7 @@
 
   /* Glassmorphism utility */
   .glass {
-    @apply bg-card/60 backdrop-blur-lg border border-white/10;
+    @apply bg-card/60 backdrop-blur-lg border border-border/40;
   }
 
   .glass-hover {
