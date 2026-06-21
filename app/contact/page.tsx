@@ -18,7 +18,7 @@ export default function ContactPage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-card to-background border-b border-border/40">
+        <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               pretitle="Get In Touch"
@@ -29,7 +29,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Section */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Contact Information */}
@@ -117,7 +117,7 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title="Frequently Asked Questions"
@@ -136,7 +136,7 @@ export default function ContactPage() {
                 },
                 {
                   q: "What industries do you serve?",
-                  a: "While we specialize in the mining industry, our expertise extends to other sectors including resources, energy, and manufacturing.",
+                  a: "We work with businesses across all sectors to deliver tailored digital solutions that drive growth and innovation.",
                 },
                 {
                   q: "Do you work with remote clients?",
@@ -161,7 +161,7 @@ export default function ContactPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <SectionHeading
               title="Still Have Questions?"

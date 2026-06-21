@@ -18,7 +18,7 @@ export default function AboutPage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-card to-background border-b border-border/40">
+        <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               pretitle="About Us"
@@ -29,9 +29,9 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">Our Story</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
@@ -62,9 +62,9 @@ export default function AboutPage() {
         </section>
 
         {/* Mission, Vision, Values */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-16">
+            <div className="mb-10">
               <SectionHeading
                 title="Our Mission, Vision & Values"
                 description="What drives us every day"
@@ -75,13 +75,13 @@ export default function AboutPage() {
               {[
                 {
                   label: 'Mission',
-                  title: 'Transform Mining Through Technology',
-                  description: 'To deliver innovative software solutions that help mining companies operate more efficiently, safely, and sustainably.',
+                  title: 'Transform Businesses Through Technology',
+                  description: 'To deliver innovative digital solutions that help businesses operate more efficiently and grow sustainably.',
                 },
                 {
                   label: 'Vision',
                   title: 'Industry-Leading Solutions',
-                  description: 'To be the trusted partner for technology transformation in the global mining industry.',
+                  description: 'To be the trusted partner for comprehensive digital transformation globally.',
                 },
                 {
                   label: 'Values',
@@ -102,14 +102,14 @@ export default function AboutPage() {
         </section>
 
         {/* Stats */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title="By The Numbers"
               description="Our impact and commitment to excellence"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-10">
               {[
                 { stat: '50+', label: 'Projects Delivered' },
                 { stat: '30+', label: 'Happy Clients' },
@@ -126,9 +126,9 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-16">
+            <div className="mb-10">
               <SectionHeading
                 title="Our Team"
                 description="Experienced professionals dedicated to your success"
@@ -145,7 +145,7 @@ export default function AboutPage() {
                 {
                   name: 'Solution Architects',
                   role: 'System Design',
-                  description: 'Strategic thinkers who design scalable, enterprise-grade solutions for complex mining operations.',
+                  description: 'Strategic thinkers who design scalable, enterprise-grade solutions for complex business operations.',
                 },
                 {
                   name: 'Project Managers',
@@ -168,7 +168,7 @@ export default function AboutPage() {
 
             <div className="mt-12 p-8 rounded-xl border border-accent/20 bg-accent/5 text-center space-y-4">
               <p className="text-foreground text-lg">
-                Join a talented team of professionals passionate about transforming the mining industry.
+                Join a talented team of professionals passionate about driving digital transformation.
               </p>
               <Link
                 href="/contact"
@@ -182,21 +182,21 @@ export default function AboutPage() {
         </section>
 
         {/* Why Partner With Us */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title="Why Partner With Logic Miners?"
               description="What sets us apart from the competition"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
               {[
                 {
                   title: 'Industry Expertise',
                   items: [
-                    'Deep understanding of mining operations',
-                    'Knowledge of industry-specific challenges',
-                    'Proven solutions for mining companies',
+                    'Deep understanding of business operations',
+                    'Industry-leading expertise',
+                    'Proven solutions for businesses of all sizes',
                   ],
                 },
                 {
@@ -241,11 +241,11 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <SectionHeading
               title="Ready to Work With Us?"
-              description="Let's discuss how we can help transform your mining operations"
+              description="Let's discuss how we can help transform your business digitally"
             />
 
             <Link

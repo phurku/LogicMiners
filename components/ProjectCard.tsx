@@ -10,6 +10,8 @@ interface ProjectCardProps {
   industry: string;
   description: string;
   image?: string;
+  imageType?: 'photo' | 'logo';
+  websiteUrl?: string;
   technologies: string[];
   results: string;
 }
@@ -20,25 +22,48 @@ export function ProjectCard({
   industry,
   description,
   image,
+  imageType = 'photo',
+  websiteUrl,
   technologies,
   results,
 }: ProjectCardProps) {
+  const href = websiteUrl ?? `/projects/${id}`;
+  const isExternal = Boolean(websiteUrl);
+
   return (
-    <Link href={`/projects/${id}`}>
+    <Link
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      aria-label={`View ${title}${isExternal ? ' website' : ' project'}`}
+    >
       <div className="group relative rounded-xl overflow-hidden border border-border/40 bg-card hover:border-accent/50 transition-all duration-300 cursor-pointer">
         {/* Image Container */}
         <div className="relative h-48 bg-gradient-to-br from-accent/10 to-accent-alt/10 overflow-hidden">
           {image ? (
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-300"
-            />
+            imageType === 'logo' ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-white p-8">
+                <Image
+                  src={image}
+                  alt={`${title} logo`}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-contain p-8 transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+            ) : (
+              <Image
+                src={image}
+                alt={title}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            )
           ) : (
             <div className="flex items-center justify-center h-full">
               <div className="text-center space-y-2">
-                <div className="text-accent text-4xl">📊</div>
+                <div className="text-accent text-4xl font-bold">LM</div>
                 <p className="text-sm text-muted-foreground">No image available</p>
               </div>
             </div>
@@ -85,7 +110,7 @@ export function ProjectCard({
 
           {/* CTA */}
           <div className="flex items-center gap-2 text-accent font-semibold pt-2 group-hover:gap-3 transition-all">
-            View Project
+            {isExternal ? 'Visit Website' : 'View Project'}
             <ArrowRight className="h-4 w-4" />
           </div>
         </div>

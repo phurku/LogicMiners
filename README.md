@@ -1,6 +1,6 @@
 # Logic Miners Website
 
-A modern, SEO-optimized website for Logic Miners - Smart Software Solutions for the Mining Industry.
+A modern, SEO-optimized website for Logic Miners - Empowering Businesses Through Digital Transformation.
 
 ## Project Overview
 

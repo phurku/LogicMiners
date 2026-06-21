@@ -16,7 +16,7 @@ export default function Home() {
         <HeroSection />
 
         {/* Services Overview */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-16">
               <SectionHeading
@@ -52,7 +52,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
@@ -66,11 +66,11 @@ export default function Home() {
                   {[
                     {
                       title: 'Industry Expertise',
-                      description: 'Deep understanding of mining industry challenges and opportunities',
+                      description: 'Deep understanding of digital transformation challenges and opportunities',
                     },
                     {
                       title: 'Proven Track Record',
-                      description: 'Successfully delivered 50+ projects for leading mining companies',
+                      description: 'Successfully delivered 50+ projects for leading businesses worldwide',
                     },
                     {
                       title: 'Agile Approach',
@@ -115,7 +115,7 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <SectionHeading
               title="Ready to Transform Your Operations?"

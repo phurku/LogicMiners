@@ -10,7 +10,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = createMetadata(
   'Projects | Logic Miners',
-  'Explore our completed projects and case studies showcasing our expertise in web development, digital marketing, design, and custom software.',
+  'Explore Logic Miners portfolio projects, including BoostUp Cleaning Services and Baba Farid Roofing websites built with modern web development, SEO, and UI/UX design.',
   '/projects'
 );
 
@@ -27,24 +27,49 @@ const emptyProjectTemplate = {
 export default function ProjectsPage() {
   // Combine real projects with template for demonstration
   const displayProjects = [...projects];
+  const projectStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Logic Miners Projects',
+    description: 'A portfolio of websites and digital experiences delivered by Logic Miners.',
+    url: 'https://logicminers.au/projects',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: displayProjects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: project.title,
+          description: project.description,
+          image: `https://logicminers.au${project.image}`,
+          url: project.websiteUrl,
+        },
+      })),
+    },
+  };
 
   return (
     <>
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectStructuredData) }}
+      />
       <main>
         {/* Hero Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-card to-background border-b border-border/40">
+        <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               pretitle="Our Work"
               title="Projects That Make an Impact"
-              description="Explore the successful projects we've delivered for mining and technology companies"
+              description="Explore the successful projects we've delivered for businesses across various industries"
             />
           </div>
         </section>
 
         {/* Projects Grid */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {displayProjects.length > 0 ? (
               <>
@@ -57,6 +82,8 @@ export default function ProjectsPage() {
                       industry={project.industry}
                       description={project.description}
                       image={project.image}
+                      imageType={project.imageType}
+                      websiteUrl={project.websiteUrl}
                       technologies={project.technologies}
                       results={project.results}
                     />
@@ -82,7 +109,7 @@ export default function ProjectsPage() {
                 )}
               </>
             ) : (
-              <div className="text-center space-y-6 py-20">
+              <div className="text-center space-y-6 py-12">
                 <p className="text-lg text-muted-foreground">No projects yet</p>
                 <p className="text-sm text-muted-foreground max-w-md mx-auto">
                   Add your completed projects in the site configuration to showcase your work and attract new clients.
@@ -92,54 +119,8 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* How to Add Projects Section */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeading
-              title="Manage Your Projects"
-              description="To add or edit projects, update the projects array in lib/siteConfig.ts with the following structure:"
-            />
-
-            <div className="mt-12 p-6 rounded-lg bg-background border border-border/40 overflow-x-auto">
-              <pre className="text-sm text-muted-foreground font-mono">
-                {`{
-  id: "project-slug",
-  title: "Project Name",
-  industry: "Industry Type",
-  description: "Brief project description",
-  image: "/projects/image.jpg",
-  technologies: ["Tech1", "Tech2"],
-  results: "Measurable outcome"
-}`}
-              </pre>
-            </div>
-
-            <div className="mt-8 p-6 rounded-lg bg-accent/5 border border-accent/20">
-              <h3 className="font-semibold text-foreground mb-3">Quick Tips:</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Add project images to /public/projects/ directory</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Use descriptive titles that highlight the value delivered</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Include technologies used for better SEO and credibility</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Quantify results (e.g., "40% efficiency increase") when possible</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <SectionHeading
               title="Let's Create Your Success Story"

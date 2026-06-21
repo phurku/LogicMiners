@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 md:py-28 bg-gradient-to-b from-card to-background border-b border-border/40">
+        <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               pretitle="Our Services"
@@ -31,7 +31,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Detail Grid */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="space-y-20">
               {services.map((service, idx) => {
@@ -101,7 +101,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Process Section */}
-        <section className="py-20 md:py-28 bg-card border-t border-border/40">
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-16">
               <SectionHeading
@@ -134,7 +134,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
             <SectionHeading
               title="Ready to Get Started?"

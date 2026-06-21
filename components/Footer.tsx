@@ -8,14 +8,14 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border/40 mt-20">
+    <footer className="bg-card border-t border-border/40 mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-foreground">Logic Miners</h3>
             <p className="text-sm text-muted-foreground">
-              Smart Software Solutions for the Mining Industry
+              Empowering Businesses Through Digital Transformation
             </p>
             <div className="flex gap-4">
               {siteConfig.links.linkedin && (

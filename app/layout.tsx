@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -41,7 +42,7 @@ export default function RootLayout({
               name: 'Logic Miners',
               url: 'https://logicminers.au',
               logo: 'https://logicminers.au/logo.png',
-              description: 'Smart Software Solutions for Mining Industry',
+              description: 'Digital solutions agency offering web development, SEO, UI/UX design, digital marketing, and custom software.',
               sameAs: [
                 'https://www.linkedin.com/company/logic-miners',
               ],

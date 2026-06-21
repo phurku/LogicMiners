@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Logic Miners",
   description: "Digital Solutions Agency - Web Development, SEO, Digital Marketing, Graphic Design & Custom Software for Modern Businesses",
   url: "https://logicminers.au",
-  ogImage: "https://logicminers.au/og-image.png",
+  ogImage: "https://logicminers.au/logo.png",
   links: {
     twitter: "#",
     linkedin: "#",
@@ -13,6 +13,7 @@ export const siteConfig = {
 export const navigationItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Packages", href: "/packages" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -93,15 +94,40 @@ export const services = [
   },
 ];
 
-export const projects = [
+export type Project = {
+  id: string;
+  title: string;
+  industry: string;
+  description: string;
+  image: string;
+  imageType?: "photo" | "logo";
+  websiteUrl?: string;
+  technologies: string[];
+  results: string;
+};
+
+export const projects: Project[] = [
   {
-    id: "nuvision",
-    title: "NUVision E-Commerce Platform",
-    industry: "E-Commerce & Retail",
-    description: "Modern e-commerce platform redesign with integrated inventory management and mobile optimization.",
-    image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "React", "Node.js", "PostgreSQL"],
-    results: "40% increase in sales, 30% reduction in cart abandonment",
+    id: "boostup-cleaning-services",
+    title: "BoostUp Cleaning Services",
+    industry: "Cleaning Services",
+    description: "Responsive service website for a Dubbo-based cleaning business with clear service pages, quote pathways, trust signals, and local SEO content.",
+    image: "/boostup-logo.png",
+    imageType: "logo",
+    websiteUrl: "https://boostupcleaningservices.au/",
+    technologies: ["Next.js", "SEO", "Responsive Design", "Lead Generation"],
+    results: "Professional brand presence with streamlined quote enquiries and local service-area visibility",
+  },
+  {
+    id: "baba-farid-roofing",
+    title: "Baba Farid Roofing",
+    industry: "Roofing Services",
+    description: "Single-page roofing website for a Sydney trade business with service sections, reviews, project proof, FAQs, and direct quote conversion paths.",
+    image: "/baba-farid-roofing-logo.png",
+    imageType: "logo",
+    websiteUrl: "https://www.babafaridroofing.com/",
+    technologies: ["Next.js", "UI/UX Design", "SEO", "Conversion Optimization"],
+    results: "Focused roofing landing experience built for phone calls, free quote enquiries, and customer trust",
   },
 ];
 
