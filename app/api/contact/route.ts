@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const contactToEmail = process.env.CONTACT_TO_EMAIL || 'contact@logicminers.au';
+const fromEmail = process.env.RESEND_FROM_EMAIL || 'Logic Miners <onboarding@resend.dev>';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error('Missing RESEND_API_KEY');
+      return NextResponse.json(
+        { error: 'Email service is not configured' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, company, subject, message } = body;
 
@@ -22,34 +35,57 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Here you would typically:
-    // 1. Send an email notification to your team
-    // 2. Store the contact in a database
-    // 3. Send a confirmation email to the user
+    // Send email to Logic Miners team
+    const emailContent = `
+New Contact Form Submission
 
-    // For now, we'll just log it and return success
+Name: ${name}
+Email: ${email}
+Company: ${company || 'Not provided'}
+Subject: ${subject}
+
+Message:
+${message}
+    `.trim();
+
+    const sendResult = await resend.emails.send({
+      from: fromEmail,
+      to: contactToEmail,
+      subject: `New Contact Form Submission: ${subject}`,
+      text: emailContent,
+      replyTo: email,
+    });
+
+    if (sendResult.error) {
+      console.error('Resend delivery error:', sendResult.error);
+      return NextResponse.json(
+        { error: 'Unable to deliver email right now. Please try again later.' },
+        { status: 502 }
+      );
+    }
+
+    // Optionally send a confirmation email to the user
+    const confirmationResult = await resend.emails.send({
+      from: fromEmail,
+      to: email,
+      subject: 'We received your message - Logic Miners',
+      text: `Hi ${name},\n\nThank you for reaching out to Logic Miners. We've received your message and will get back to you as soon as possible.\n\nBest regards,\nThe Logic Miners Team`,
+    });
+
+    if (confirmationResult.error) {
+      console.log('Confirmation email failed:', confirmationResult.error); // Don't fail if confirmation email doesn't work
+    }
+
     console.log('[Contact Form]', {
       name,
       email,
       company,
       subject,
       message,
+      deliveredTo: contactToEmail,
+      messageId: sendResult.data?.id,
       timestamp: new Date().toISOString(),
     });
-
-    // TODO: Implement email service (e.g., SendGrid, Resend, Nodemailer)
-    // const emailSent = await sendEmail({
-    //   to: 'contact@logicminers.au',
-    //   from: 'noreply@logicminers.au',
-    //   subject: `New Contact Form Submission: ${subject}`,
-    //   text: `
-    //     Name: ${name}
-    //     Email: ${email}
-    //     Company: ${company}
-    //     Subject: ${subject}
-    //     Message: ${message}
-    //   `,
-    // });
 
     return NextResponse.json(
       { success: true, message: 'Contact form submitted successfully' },
