@@ -21,7 +21,7 @@ export default function Map() {
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-      setLeafletMap(() => () => {
+      setLeafletMap(() => function LeafletMapComponent() {
         const { MapContainer, TileLayer, Marker, Popup } = reactLeaflet;
         return (
           <div style={{ height: '400px', width: '100%' }}>

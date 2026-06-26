@@ -82,7 +82,7 @@ export default function PackagesPage() {
 
                         <div className="space-y-6 flex-grow">
                           <div>
-                            <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">What's Included</h4>
+                            <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">What&apos;s Included</h4>
                             <ul className="space-y-3">
                               {tier.features.map((feature, fIdx) => (
                                 <li key={fIdx} className="flex items-start gap-3">

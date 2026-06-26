@@ -23,7 +23,7 @@ export default function AboutPage() {
             <SectionHeading
               pretitle="About Us"
               title="Your Partner for Digital Success"
-              description="We're a team of experienced developers, designers, and digital strategists dedicated to helping businesses grow through innovative digital solutions."
+              description="We&apos;re a team of experienced developers, designers, and digital strategists dedicated to helping businesses grow through innovative digital solutions."
             />
           </div>
         </section>
@@ -38,7 +38,7 @@ export default function AboutPage() {
                   Founded to bridge the gap between business goals and digital technology, Logic Miners started with a clear mission: deliver exceptional digital solutions that actually move the needle for our clients. We focus on quality over quantity.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Over the years, we've grown into a full-service digital agency. We've completed 150+ projects, worked with 100+ satisfied clients, and built a team of passionate developers, designers, and strategists who genuinely care about their work.
+                  Over the years, we&apos;ve grown into a full-service digital agency. We&apos;ve completed 150+ projects, worked with 100+ satisfied clients, and built a team of passionate developers, designers, and strategists who genuinely care about their work.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Today, we continue to evolve our services to help businesses succeed online, whether through stunning websites, effective SEO, creative design, or custom software solutions. Your success is our mission.
