@@ -178,21 +178,19 @@ Animations are defined in `/app/globals.css`. Modify the keyframes to adjust ani
 
 ## Contact Form Setup
 
-The contact form currently logs submissions to the console. To implement email notifications:
+The contact form sends emails through SMTP (Hostinger-compatible). Configure these values in `.env.local`:
 
-1. Install an email service package:
-   ```bash
-   pnpm add resend
-   # or
-   pnpm add sendgrid
-   ```
+```
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=contact@logicminers.au
+SMTP_PASS=your_mailbox_password
+CONTACT_TO_EMAIL=contact@logicminers.au
+CONTACT_FROM_EMAIL="Logic Miners <contact@logicminers.au>"
+```
 
-2. Update `/app/api/contact/route.ts` to send emails
-
-3. Add API keys to `.env.local`:
-   ```
-   NEXT_PUBLIC_EMAIL_SERVICE_KEY=your_key_here
-   ```
+For most Hostinger mailboxes, `SMTP_PORT=465` with `SMTP_SECURE=true` works best. Use `SMTP_PORT=587` and `SMTP_SECURE=false` only if your mailbox is configured for STARTTLS.
 
 ## Deployment
 

@@ -1,19 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const contactToEmail = process.env.CONTACT_TO_EMAIL || 'contact@logicminers.au';
-const fromEmail = process.env.RESEND_FROM_EMAIL || 'Logic Miners <onboarding@resend.dev>';
+const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Logic Miners <contact@logicminers.au>';
+const smtpHost = process.env.SMTP_HOST || 'smtp.hostinger.com';
+const smtpPort = Number(process.env.SMTP_PORT || '465');
+const smtpSecure = (process.env.SMTP_SECURE || 'true') === 'true';
+const smtpUser = process.env.SMTP_USER;
+const smtpPass = process.env.SMTP_PASS;
 
 export async function POST(request: NextRequest) {
   try {
-    if (!process.env.RESEND_API_KEY) {
-      console.error('Missing RESEND_API_KEY');
+    if (!smtpUser || !smtpPass) {
+      console.error('Missing SMTP credentials');
       return NextResponse.json(
         { error: 'Email service is not configured' },
         { status: 500 }
       );
     }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
 
     const body = await request.json();
     const { name, email, company, subject, message } = body;
@@ -48,7 +62,7 @@ Message:
 ${message}
     `.trim();
 
-    const sendResult = await resend.emails.send({
+    const sendResult = await transporter.sendMail({
       from: fromEmail,
       to: contactToEmail,
       subject: `New Contact Form Submission: ${subject}`,
@@ -56,24 +70,16 @@ ${message}
       replyTo: email,
     });
 
-    if (sendResult.error) {
-      console.error('Resend delivery error:', sendResult.error);
-      return NextResponse.json(
-        { error: 'Unable to deliver email right now. Please try again later.' },
-        { status: 502 }
-      );
-    }
-
     // Optionally send a confirmation email to the user
-    const confirmationResult = await resend.emails.send({
-      from: fromEmail,
-      to: email,
-      subject: 'We received your message - Logic Miners',
-      text: `Hi ${name},\n\nThank you for reaching out to Logic Miners. We've received your message and will get back to you as soon as possible.\n\nBest regards,\nThe Logic Miners Team`,
-    });
-
-    if (confirmationResult.error) {
-      console.log('Confirmation email failed:', confirmationResult.error); // Don't fail if confirmation email doesn't work
+    try {
+      await transporter.sendMail({
+        from: fromEmail,
+        to: email,
+        subject: 'We received your message - Logic Miners',
+        text: `Hi ${name},\n\nThank you for reaching out to Logic Miners. We've received your message and will get back to you as soon as possible.\n\nBest regards,\nThe Logic Miners Team`,
+      });
+    } catch (confirmationError) {
+      console.log('Confirmation email failed:', confirmationError); // Don't fail if confirmation email doesn't work
     }
 
     console.log('[Contact Form]', {
@@ -83,7 +89,7 @@ ${message}
       subject,
       message,
       deliveredTo: contactToEmail,
-      messageId: sendResult.data?.id,
+      messageId: sendResult.messageId,
       timestamp: new Date().toISOString(),
     });
 
