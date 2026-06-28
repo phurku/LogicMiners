@@ -129,6 +129,17 @@ export const projects: Project[] = [
     technologies: ["Next.js", "UI/UX Design", "SEO", "Conversion Optimization"],
     results: "Focused roofing landing experience built for phone calls, free quote enquiries, and customer trust",
   },
+  {
+    id: "nuvision-driving-school",
+    title: "NUVision Driving School",
+    industry: "Driving School",
+    description: "Professional driving school website designed to promote lesson packages, instructor credibility, and simple learner enquiry pathways.",
+    image: "/Images/Nuvision.png",
+    imageType: "logo",
+    websiteUrl: "https://nuvisiondrivingschool.com.au/",
+    technologies: ["Next.js", "Responsive Design", "UI/UX Design", "Lead Generation"],
+    results: "Clear service presentation with improved trust signals and streamlined enquiry conversion for new student bookings",
+  },
 ];
 
 export const teamMembers = [
