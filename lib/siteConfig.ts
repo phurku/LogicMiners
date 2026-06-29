@@ -4,9 +4,9 @@ export const siteConfig = {
   url: "https://logicminers.au",
   ogImage: "https://logicminers.au/logo.png",
   links: {
-    twitter: "#",
-    linkedin: "#",
-    github: "#",
+    linkedin: "https://www.linkedin.com/company/logic-miners?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3Bh5iY%2FlS6Tvag40zU%2FJDRTA%3D%3D",
+    facebook: "https://www.facebook.com/profile.php?id=61584286401697",
+    gmail: "mailto:contact@logicminers.au",
   },
 };
 
@@ -42,6 +42,18 @@ export const services = [
       "PPC Campaigns",
       "Content Strategy",
       "Analytics & Reporting",
+    ],
+  },
+  {
+    id: "digital-strategy-advisory",
+    title: "Digital Strategy & Advisory",
+    description: "Clear digital roadmaps, market positioning, and practical advisory support to help your business make better technology and growth decisions.",
+    icon: "Compass",
+    features: [
+      "Digital Roadmaps",
+      "Technology Planning",
+      "Growth Strategy",
+      "Ongoing Advisory",
     ],
   },
   {

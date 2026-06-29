@@ -14,18 +14,7 @@ export const metadata: Metadata = createMetadata(
   '/projects'
 );
 
-// Template for future projects
-const emptyProjectTemplate = {
-  id: 'template',
-  title: 'Your Project Here',
-  industry: 'Industry',
-  description: 'Add your completed project details to showcase your work.',
-  technologies: ['Tech 1', 'Tech 2', 'Tech 3'],
-  results: 'Measurable business impact',
-};
-
 export default function ProjectsPage() {
-  // Combine real projects with template for demonstration
   const displayProjects = [...projects];
   const projectStructuredData = {
     '@context': 'https://schema.org',
@@ -89,24 +78,6 @@ export default function ProjectsPage() {
                     />
                   ))}
                 </div>
-
-                {displayProjects.length < 6 && (
-                  <div className="mt-12">
-                    <p className="text-center text-muted-foreground mb-8">
-                      More projects coming soon. Add your completed work to showcase your portfolio.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                      {[1, 2, 3].map((idx) => (
-                        <div key={`empty-${idx}`} className="relative rounded-xl border border-dashed border-border/40 bg-card/50 p-6 flex items-center justify-center min-h-64">
-                          <div className="text-center space-y-2">
-                            <div className="text-muted-foreground text-3xl">+</div>
-                            <p className="text-sm text-muted-foreground">New Project</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </>
             ) : (
               <div className="text-center space-y-6 py-12">

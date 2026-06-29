@@ -54,7 +54,7 @@ export default function AboutPage() {
                       </svg>
                     </div>
                   </div>
-                  <p className="text-foreground font-semibold">8+ Years<br />of Excellence</p>
+                  <p className="text-foreground font-semibold">1+ Years<br />of Excellence</p>
                 </div>
               </div>
             </div>
@@ -111,9 +111,9 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-10">
               {[
-                { stat: '50+', label: 'Projects Delivered' },
-                { stat: '30+', label: 'Happy Clients' },
-                { stat: '8+', label: 'Years Active' },
+                { stat: '5+', label: 'Projects Delivered' },
+                { stat: '10+', label: 'Happy Clients' },
+                { stat: '1+', label: 'Year Active' },
                 { stat: '100%', label: 'Client Satisfaction' },
               ].map((item, idx) => (
                 <div key={idx} className="text-center space-y-2">
