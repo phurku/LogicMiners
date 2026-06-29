@@ -55,15 +55,15 @@ export function HeroSection() {
             {/* Stats */}
             <div className="flex gap-12 pt-8 border-t border-border/40">
               <div className="animate-reveal-up delay-100">
-                <div className="text-3xl md:text-4xl font-black text-accent">50+</div>
+                <div className="text-3xl md:text-4xl font-black text-accent">10+</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Completed</p>
               </div>
               <div className="animate-reveal-up delay-200">
-                <div className="text-3xl md:text-4xl font-black text-primary">30+</div>
+                <div className="text-3xl md:text-4xl font-black text-primary">5+</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Happy Clients</p>
               </div>
               <div className="animate-reveal-up delay-300">
-                <div className="text-3xl md:text-4xl font-black text-accent-alt">8+</div>
+                <div className="text-3xl md:text-4xl font-black text-accent-alt">1+</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Experience</p>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { services } from '@/lib/siteConfig';
 import { createMetadata } from '@/lib/metadata';
 import * as LucideIcons from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = createMetadata(
@@ -13,6 +14,16 @@ export const metadata: Metadata = createMetadata(
   'Explore our comprehensive digital services: web development, SEO, digital marketing, graphic design, custom software, UI/UX design, and social media management.',
   '/services'
 );
+
+const serviceImages: Record<string, string> = {
+  'web-development': '/Images/webpageImage.jpg',
+  'seo-marketing': '/Images/marketingImage.jpg',
+  'digital-strategy-advisory': '/Images/SchedulingImag.jpg',
+  'graphic-design': '/Images/homeImage.jpg',
+  'custom-software': '/Images/customSoftwareImag.jpg',
+  'ui-ux-design': '/Images/UIUXDesign.jpg',
+  'social-media': '/Images/marketingImage.jpg',
+};
 
 export default function ServicesPage() {
   return (
@@ -37,6 +48,7 @@ export default function ServicesPage() {
               {services.map((service, idx) => {
                 const IconComponent = (LucideIcons as any)[service.icon] || LucideIcons.Lightbulb;
                 const isEven = idx % 2 === 0;
+                const serviceImage = serviceImages[service.id];
 
                 return (
                   <div key={service.id} id={service.id} className="scroll-mt-24">
@@ -81,10 +93,25 @@ export default function ServicesPage() {
 
                       {/* Visual */}
                       <div className={`relative h-80 md:h-96 ${!isEven ? 'md:col-start-1 md:row-start-1' : ''}`}>
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-accent-alt/10 rounded-2xl flex items-center justify-center">
-                          <div className="p-8">
-                            <IconComponent className="h-32 w-32 text-accent/20" />
-                          </div>
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-accent/10 to-accent-alt/10">
+                          {serviceImage ? (
+                            <>
+                              <Image
+                                src={serviceImage}
+                                alt={service.title}
+                                fill
+                                sizes="(min-width: 768px) 50vw, 100vw"
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/15 to-transparent" />
+                            </>
+                          ) : (
+                            <div className="flex h-full items-center justify-center">
+                              <div className="p-8">
+                                <IconComponent className="h-32 w-32 text-accent/20" />
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

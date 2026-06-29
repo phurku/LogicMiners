@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { navigationItems, siteConfig } from '@/lib/siteConfig';
-import { Mail, MapPin, Phone, Linkedin, Twitter, Github } from 'lucide-react';
+import { Mail, MapPin, Phone, Linkedin, Facebook } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,26 +29,25 @@ export function Footer() {
                   <Linkedin className="h-5 w-5" />
                 </a>
               )}
-              {siteConfig.links.twitter && (
+             
+              {siteConfig.links.facebook && (
                 <a
-                  href={siteConfig.links.twitter}
+                  href={siteConfig.links.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-accent transition-colors"
-                  aria-label="Twitter"
+                  aria-label="Facebook"
                 >
-                  <Twitter className="h-5 w-5" />
+                  <Facebook className="h-5 w-5" />
                 </a>
               )}
-              {siteConfig.links.github && (
+              {siteConfig.links.gmail && (
                 <a
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={siteConfig.links.gmail}
                   className="text-muted-foreground hover:text-accent transition-colors"
-                  aria-label="GitHub"
+                  aria-label="Gmail"
                 >
-                  <Github className="h-5 w-5" />
+                  <Mail className="h-5 w-5" />
                 </a>
               )}
             </div>
