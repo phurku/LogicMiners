@@ -3,8 +3,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Lightbulb } from 'lucide-react';
+import { projects } from '@/lib/siteConfig';
 
 export function HeroSection() {
+  const projectsDelivered = projects.length;
+  const happyClients = projects.length;
+
+  const foundedDate = new Date('2026-01-01T00:00:00');
+  const now = new Date();
+  let totalMonths =
+    (now.getFullYear() - foundedDate.getFullYear()) * 12 +
+    (now.getMonth() - foundedDate.getMonth());
+
+  if (now.getDate() < foundedDate.getDate()) {
+    totalMonths -= 1;
+  }
+
+  totalMonths = Math.max(0, totalMonths);
+  const yearsActive = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+  const experienceStat = yearsActive > 0 ? `${yearsActive}+` : `${remainingMonths}m`;
+
   return (
     <section className="relative min-h-[600px] md:min-h-[800px] flex items-center overflow-hidden bg-gradient-to-b from-background via-card/30 to-background">
       {/* Background decorative elements */}
@@ -55,15 +74,15 @@ export function HeroSection() {
             {/* Stats */}
             <div className="flex gap-12 pt-8 border-t border-border/40">
               <div className="animate-reveal-up delay-100">
-                <div className="text-3xl md:text-4xl font-black text-accent">10+</div>
+                <div className="text-3xl md:text-4xl font-black text-accent">{projectsDelivered}+</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Completed</p>
               </div>
               <div className="animate-reveal-up delay-200">
-                <div className="text-3xl md:text-4xl font-black text-primary">5+</div>
+                <div className="text-3xl md:text-4xl font-black text-primary">{happyClients}+</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Happy Clients</p>
               </div>
               <div className="animate-reveal-up delay-300">
-                <div className="text-3xl md:text-4xl font-black text-accent-alt">1+</div>
+                <div className="text-3xl md:text-4xl font-black text-accent-alt">{experienceStat}</div>
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Experience</p>
               </div>
             </div>
