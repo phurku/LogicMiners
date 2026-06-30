@@ -157,15 +157,38 @@ export const projects: Project[] = [
 export const teamMembers = [
   {
     id: 1,
-    name: "Team Member",
-    role: "Lead Developer",
-    image: "/team/member-1.jpg",
+    name: "Development Team",
+    role: "Web and Software Engineering",
+    skills: ["Next.js", "React", "TypeScript", "API Development"],
+    image: "/placeholder-user.jpg",
   },
   {
     id: 2,
-    name: "Team Member",
-    role: "UI/UX Designer",
-    image: "/team/member-2.jpg",
+    name: "Domain and Hosting Team",
+    role: "Domain and Infrastructure Management",
+    skills: ["Domain Setup", "DNS Management", "Hosting", "Email Configuration"],
+    image: "/placeholder-user.jpg",
+  },
+  {
+    id: 3,
+    name: "Marketing Team",
+    role: "Digital Growth and Campaign Strategy",
+    skills: ["SEO", "Content Planning", "Social Media", "Performance Reporting"],
+    image: "/placeholder-user.jpg",
+  },
+  {
+    id: 4,
+    name: "Design Team",
+    role: "UI/UX and Brand Experience",
+    skills: ["UI Design", "UX Research", "Wireframing", "Prototyping"],
+    image: "/placeholder-user.jpg",
+  },
+  {
+    id: 5,
+    name: "Operations Team",
+    role: "Project Delivery and Client Support",
+    skills: ["Project Planning", "Client Communication", "QA Coordination", "Process Management"],
+    image: "/placeholder-user.jpg",
   },
 ];
 
