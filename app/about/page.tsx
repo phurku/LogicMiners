@@ -4,7 +4,9 @@ import { Footer } from '@/components/Footer';
 import { SectionHeading } from '@/components/SectionHeading';
 import { createMetadata } from '@/lib/metadata';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { projects, teamMembers } from '@/lib/siteConfig';
 
 export const metadata: Metadata = createMetadata(
   'About Us | Logic Miners',
@@ -13,6 +15,23 @@ export const metadata: Metadata = createMetadata(
 );
 
 export default function AboutPage() {
+  const foundedDate = new Date('2026-01-01T00:00:00');
+  const now = new Date();
+  let totalMonths =
+    (now.getFullYear() - foundedDate.getFullYear()) * 12 +
+    (now.getMonth() - foundedDate.getMonth());
+
+  if (now.getDate() < foundedDate.getDate()) {
+    totalMonths -= 1;
+  }
+
+  totalMonths = Math.max(0, totalMonths);
+  const yearsActive = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+  const lifespanStat = yearsActive > 0 ? `${yearsActive}y ${remainingMonths} months` : `${remainingMonths} months`;
+  const projectsDelivered = projects.length;
+  const happyClients = projects.length;
+
   return (
     <>
       <Header />
@@ -54,7 +73,7 @@ export default function AboutPage() {
                       </svg>
                     </div>
                   </div>
-                  <p className="text-foreground font-semibold">1+ Years<br />of Excellence</p>
+                  <p className="text-foreground font-semibold">{lifespanStat}<br />of Excellence</p>
                 </div>
               </div>
             </div>
@@ -111,9 +130,9 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-10">
               {[
-                { stat: '5+', label: 'Projects Delivered' },
-                { stat: '10+', label: 'Happy Clients' },
-                { stat: '1+', label: 'Year Active' },
+                { stat: `${projectsDelivered}`, label: 'Projects Delivered' },
+                { stat: `${happyClients}`, label: 'Happy Clients' },
+                { stat: lifespanStat, label: 'Active Years' },
                 { stat: '100%', label: 'Client Satisfaction' },
               ].map((item, idx) => (
                 <div key={idx} className="text-center space-y-2">
@@ -130,54 +149,50 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
               <SectionHeading
-                title="Our Team"
-                description="Experienced professionals dedicated to your success"
+                title="Meet the Teams"
+                description="Specialized departments working together to deliver your digital success"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: 'Experienced Developers',
-                  role: 'Full-Stack Engineering',
-                  description: 'Expert developers with deep knowledge of custom software development and modern technologies.',
-                },
-                {
-                  name: 'Solution Architects',
-                  role: 'System Design',
-                  description: 'Strategic thinkers who design scalable, enterprise-grade solutions for complex business operations.',
-                },
-                {
-                  name: 'Project Managers',
-                  role: 'Delivery Excellence',
-                  description: 'Dedicated professionals ensuring projects are delivered on time, within budget, and exceeding expectations.',
-                },
-              ].map((item, idx) => (
-                <div key={idx} className="rounded-xl border border-border/40 bg-background hover:border-accent/50 transition-colors overflow-hidden">
-                  <div className="h-40 bg-gradient-to-br from-accent/20 to-accent-alt/20 flex items-center justify-center">
-                    <div className="text-6xl text-accent/20">👥</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member) => (
+                <div key={member.id} className="rounded-xl border border-border/40 bg-background hover:border-accent/50 transition-all hover:shadow-lg overflow-hidden">
+                  <div className="relative h-64 bg-gradient-to-br from-accent/20 to-accent-alt/20 overflow-hidden flex items-center justify-center">
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      />
+                    ) : (
+                      <div className="text-6xl text-accent/20">👤</div>
+                    )}
                   </div>
-                  <div className="p-6 space-y-3">
-                    <h3 className="text-lg font-bold text-foreground">{item.name}</h3>
-                    <p className="text-sm text-accent font-medium">{item.role}</p>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  <div className="p-6 space-y-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
+                      <p className="text-sm text-accent font-medium mt-1">{member.role}</p>
+                    </div>
+                    {member.skills && (
+                      <div className="space-y-2">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Skills</p>
+                        <div className="flex flex-wrap gap-2">
+                          {member.skills.map((skill, idx) => (
+                            <span key={idx} className="inline-block px-2 py-1 text-xs bg-accent/10 text-accent rounded">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-12 p-8 rounded-xl border border-accent/20 bg-accent/5 text-center space-y-4">
-              <p className="text-foreground text-lg">
-                Join a talented team of professionals passionate about driving digital transformation.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-2 text-accent font-semibold hover:gap-3 transition-all"
-              >
-                We&apos;re Hiring
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+            
           </div>
         </section>
 
@@ -186,41 +201,41 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title="Why Partner With Logic Miners?"
-              description="What sets us apart from the competition"
+              description="As a growing startup, we focus on practical execution, transparent communication, and steady results for every client."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
               {[
                 {
-                  title: 'Industry Expertise',
+                  title: 'Startup Agility',
                   items: [
-                    'Deep understanding of business operations',
-                    'Industry-leading expertise',
-                    'Proven solutions for businesses of all sizes',
+                    'Faster decision-making and delivery cycles',
+                    'Flexible plans that adapt to your feedback',
+                    'Direct collaboration with the working team',
                   ],
                 },
                 {
-                  title: 'Technical Excellence',
+                  title: 'Practical Technology Choices',
                   items: [
-                    'Cutting-edge technology stack',
-                    'Scalable and robust architectures',
-                    'Quality assurance and testing',
+                    'Modern tools selected based on your goals',
+                    'Clean, maintainable code and reliable handover',
+                    'Built with future growth in mind',
                   ],
                 },
                 {
-                  title: 'Client-Centric Approach',
+                  title: 'Transparent Collaboration',
                   items: [
-                    'Dedicated account management',
-                    'Regular communication and updates',
-                    'Long-term partnership mindset',
+                    'Clear timelines, scope, and progress updates',
+                    'Honest advice on priorities and trade-offs',
+                    'Simple communication without unnecessary jargon',
                   ],
                 },
                 {
-                  title: 'Proven Results',
+                  title: 'Commitment to Improvement',
                   items: [
-                    'Measurable business impact',
-                    '100% client satisfaction',
-                    'On-time and on-budget delivery',
+                    'Continuous refinement after launch',
+                    'Focus on measurable outcomes over promises',
+                    'Long-term support as your business grows',
                   ],
                 },
               ].map((section, idx) => (
