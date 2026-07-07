@@ -1,33 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const contactToEmail = process.env.CONTACT_TO_EMAIL || 'contact@logicminers.au';
-const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Logic Miners <contact@logicminers.au>';
-const smtpHost = process.env.SMTP_HOST || 'smtp.hostinger.com';
-const smtpPort = Number(process.env.SMTP_PORT || '465');
-const smtpSecure = (process.env.SMTP_SECURE || 'true') === 'true';
-const smtpUser = process.env.SMTP_USER;
-const smtpPass = process.env.SMTP_PASS;
+const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Logic Miners <onboarding@resend.dev>';
+const resendApiKey = process.env.RESEND_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {
-    if (!smtpUser || !smtpPass) {
-      console.error('Missing SMTP credentials');
+    if (!resendApiKey) {
+      console.error('Missing RESEND_API_KEY');
       return NextResponse.json(
         { error: 'Email service is not configured' },
         { status: 500 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-    });
+    const resend = new Resend(resendApiKey);
 
     const body = await request.json();
     const { name, email, company, subject, message } = body;
@@ -62,7 +50,7 @@ Message:
 ${message}
     `.trim();
 
-    const sendResult = await transporter.sendMail({
+    const sendResult = await resend.emails.send({
       from: fromEmail,
       to: contactToEmail,
       subject: `New Contact Form Submission: ${subject}`,
@@ -70,9 +58,17 @@ ${message}
       replyTo: email,
     });
 
+    if (sendResult.error) {
+      console.error('Primary email delivery failed:', sendResult.error);
+      return NextResponse.json(
+        { error: 'Unable to send message right now. Please try again shortly.' },
+        { status: 502 }
+      );
+    }
+
     // Optionally send a confirmation email to the user
     try {
-      await transporter.sendMail({
+      await resend.emails.send({
         from: fromEmail,
         to: email,
         subject: 'We received your message - Logic Miners',
@@ -89,7 +85,7 @@ ${message}
       subject,
       message,
       deliveredTo: contactToEmail,
-      messageId: sendResult.messageId,
+      messageId: sendResult.data?.id,
       timestamp: new Date().toISOString(),
     });
 

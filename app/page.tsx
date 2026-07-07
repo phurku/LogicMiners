@@ -1,5 +1,3 @@
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCard } from '@/components/ServiceCard';
@@ -9,9 +7,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      <main>
+    <main>
         {/* Hero Section */}
         <HeroSection />
 
@@ -139,8 +135,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }

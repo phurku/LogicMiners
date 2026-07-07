@@ -1,11 +1,17 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { SectionHeading } from '@/components/SectionHeading';
 import { createMetadata } from '@/lib/metadata';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Code2,
+  ServerCog,
+  Megaphone,
+  PenTool,
+  ClipboardCheck,
+  Users,
+  type LucideIcon,
+} from 'lucide-react';
 import { projects, teamMembers } from '@/lib/siteConfig';
 
 export const metadata: Metadata = createMetadata(
@@ -15,6 +21,27 @@ export const metadata: Metadata = createMetadata(
 );
 
 export default function AboutPage() {
+  const getTeamIcon = (memberName: string): LucideIcon => {
+    const iconMap: Record<string, LucideIcon> = {
+      'Development Team': Code2,
+      'Domain and Hosting Team': ServerCog,
+      'Marketing Team': Megaphone,
+      'Design Team': PenTool,
+      'Operations Team': ClipboardCheck,
+    };
+
+    return iconMap[memberName] || Users;
+  };
+
+  const getTeamInitials = (memberName: string): string => {
+    return memberName
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase();
+  };
+
   const foundedDate = new Date('2026-01-01T00:00:00');
   const now = new Date();
   let totalMonths =
@@ -33,16 +60,14 @@ export default function AboutPage() {
   const happyClients = projects.length;
 
   return (
-    <>
-      <Header />
-      <main>
+    <main>
         {/* Hero Section */}
         <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               pretitle="About Us"
-              title="Your Partner for Digital Success"
-              description="We&apos;re a team of experienced developers, designers, and digital strategists dedicated to helping businesses grow through innovative digital solutions."
+              title="We Build Digital Systems That Help Your Business Grow"
+              description="Fast websites, stronger visibility, and practical execution focused on real customer enquiries and measurable results."
             />
           </div>
         </section>
@@ -54,13 +79,10 @@ export default function AboutPage() {
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">Our Story</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Founded to bridge the gap between business goals and digital technology, Logic Miners started with a clear mission: deliver exceptional digital solutions that actually move the needle for our clients. We focus on quality over quantity.
+                  We help businesses turn digital work into real results: better visibility, stronger trust, and more enquiries.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Over the years, we&apos;ve grown into a full-service digital agency. We&apos;ve completed 150+ projects, worked with 100+ satisfied clients, and built a team of passionate developers, designers, and strategists who genuinely care about their work.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Today, we continue to evolve our services to help businesses succeed online, whether through stunning websites, effective SEO, creative design, or custom software solutions. Your success is our mission.
+                  You work directly with specialists across engineering, design, infrastructure, and growth, with transparent scope and delivery.
                 </p>
               </div>
 
@@ -95,20 +117,20 @@ export default function AboutPage() {
                 {
                   label: 'Mission',
                   title: 'Transform Businesses Through Technology',
-                  description: 'To deliver innovative digital solutions that help businesses operate more efficiently and grow sustainably.',
+                  description: 'Build practical digital systems that improve operations and drive growth.',
                 },
                 {
                   label: 'Vision',
                   title: 'Industry-Leading Solutions',
-                  description: 'To be the trusted partner for comprehensive digital transformation globally.',
+                  description: 'Be the most trusted delivery partner for digital transformation.',
                 },
                 {
                   label: 'Values',
                   title: 'Excellence & Innovation',
-                  description: 'We believe in delivering exceptional quality, embracing innovation, and building long-term partnerships with our clients.',
+                  description: 'Quality first, honest communication, and long-term client partnerships.',
                 },
               ].map((item, idx) => (
-                <div key={idx} className="p-8 rounded-xl border border-border/40 bg-background hover:border-accent/50 transition-colors space-y-4">
+                <div key={idx} className="p-8 rounded-xl border border-border/40 bg-background space-y-4">
                   <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold">
                     {item.label}
                   </span>
@@ -156,43 +178,48 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member) => (
-                <div key={member.id} className="rounded-xl border border-border/40 bg-background hover:border-accent/50 transition-all hover:shadow-lg overflow-hidden">
-                  <div className="relative h-64 bg-gradient-to-br from-accent/20 to-accent-alt/20 overflow-hidden flex items-center justify-center">
-                    {member.image ? (
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      />
-                    ) : (
-                      <div className="text-6xl text-accent/20">👤</div>
-                    )}
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
-                      <p className="text-sm text-accent font-medium mt-1">{member.role}</p>
-                    </div>
-                    {member.skills && (
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Skills</p>
-                        <div className="flex flex-wrap gap-2">
-                          {member.skills.map((skill, idx) => (
-                            <span key={idx} className="inline-block px-2 py-1 text-xs bg-accent/10 text-accent rounded">
-                              {skill}
-                            </span>
-                          ))}
+                <div key={member.id} className="rounded-xl border border-border/40 bg-background overflow-hidden">
+                  {(() => {
+                    const TeamIcon = getTeamIcon(member.name);
+                    const teamInitials = getTeamInitials(member.name);
+
+                    return (
+                      <>
+                        <div className="relative h-64 bg-gradient-to-br from-accent/10 via-background to-accent-alt/10 overflow-hidden flex items-center justify-center">
+                          <div className="flex flex-col items-center gap-4">
+                            <div className="h-20 w-20 rounded-2xl border border-accent/30 bg-accent/10 flex items-center justify-center">
+                              <TeamIcon className="h-10 w-10 text-accent" />
+                            </div>
+                            <div className="h-10 min-w-10 px-3 rounded-full border border-border/50 bg-background/80 text-xs font-semibold tracking-wide text-foreground flex items-center justify-center">
+                              {teamInitials}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                        <div className="p-6 space-y-4">
+                          <div className="space-y-2">
+                            <h3 className="text-lg font-bold text-foreground">{member.name}</h3>
+                            <p className="text-sm text-accent font-medium mt-1">{member.role}</p>
+                          </div>
+                          {member.skills && (
+                            <div className="space-y-2">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Skills</p>
+                              <div className="flex flex-wrap gap-2">
+                                {member.skills.map((skill, idx) => (
+                                  <span key={idx} className="inline-block px-2 py-1 text-xs bg-accent/10 text-accent rounded">
+                                    {skill}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
               ))}
             </div>
 
-            
           </div>
         </section>
 
@@ -201,7 +228,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               title="Why Partner With Logic Miners?"
-              description="As a growing startup, we focus on practical execution, transparent communication, and steady results for every client."
+              description="Clear process, accountable delivery, and outcomes you can track."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
@@ -260,20 +287,18 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <SectionHeading
               title="Ready to Work With Us?"
-              description="Let's discuss how we can help transform your business digitally"
+              description="Tell us your goals. We&apos;ll propose a practical plan."
             />
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-accent text-accent-foreground font-semibold"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }

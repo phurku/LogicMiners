@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ContactForm } from '@/components/ContactForm';
 import { createMetadata } from '@/lib/metadata';
@@ -14,9 +12,7 @@ export const metadata: Metadata = createMetadata(
 
 export default function ContactPage() {
   return (
-    <>
-      <Header />
-      <main>
+    <main>
         {/* Hero Section */}
         <section className="py-12 md:py-16 bg-gradient-to-b from-card to-background border-b border-border/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,8 +182,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }
