@@ -178,19 +178,15 @@ Animations are defined in `/app/globals.css`. Modify the keyframes to adjust ani
 
 ## Contact Form Setup
 
-The contact form sends emails through SMTP (Hostinger-compatible). Configure these values in `.env.local`:
+The contact form uses Resend through the Next.js API route. Configure these values in `.env.local`:
 
 ```
-SMTP_HOST=smtp.hostinger.com
-SMTP_PORT=465
-SMTP_SECURE=true
-SMTP_USER=contact@logicminers.au
-SMTP_PASS=your_mailbox_password
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
 CONTACT_TO_EMAIL=contact@logicminers.au
-CONTACT_FROM_EMAIL="Logic Miners <contact@logicminers.au>"
+CONTACT_FROM_EMAIL="Logic Miners <noreply@your-verified-domain.com>"
 ```
 
-For most Hostinger mailboxes, `SMTP_PORT=465` with `SMTP_SECURE=true` works best. Use `SMTP_PORT=587` and `SMTP_SECURE=false` only if your mailbox is configured for STARTTLS.
+`CONTACT_FROM_EMAIL` must use a sender address from a domain verified in your Resend account.
 
 ## Deployment
 

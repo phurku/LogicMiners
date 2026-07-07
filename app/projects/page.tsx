@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ProjectCard } from '@/components/ProjectCard';
 import { projects } from '@/lib/siteConfig';
 import { createMetadata } from '@/lib/metadata';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, Quote } from 'lucide-react';
 
 export const metadata: Metadata = createMetadata(
   'Projects | Logic Miners',
@@ -40,7 +39,6 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Header />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectStructuredData) }}
@@ -74,6 +72,7 @@ export default function ProjectsPage() {
                       imageType={project.imageType}
                       websiteUrl={project.websiteUrl}
                       technologies={project.technologies}
+                      highlights={project.highlights}
                       results={project.results}
                     />
                   ))}
@@ -87,6 +86,88 @@ export default function ProjectsPage() {
                 </p>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* Case Studies */}
+        <section className="py-12 md:py-16 bg-card border-t border-border/40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <SectionHeading
+              title="Detailed Case Studies"
+              description="How we solved real business problems and delivered measurable outcomes."
+            />
+
+            <div className="space-y-10">
+              {displayProjects.map((project) => (
+                <article key={`${project.id}-case-study`} className="rounded-xl border border-border/40 bg-background overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div className="relative min-h-[220px] lg:min-h-[300px] border-b lg:border-b-0 lg:border-r border-border/40 bg-muted/10">
+                      <Image
+                        src={project.screenshot}
+                        alt={`${project.title} project screenshot`}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className={project.imageType === 'logo' ? 'object-contain p-10 md:p-14' : 'object-cover'}
+                      />
+                    </div>
+
+                    <div className="p-6 md:p-8 space-y-6">
+                      <div className="space-y-2">
+                        <p className="text-xs font-semibold tracking-wide uppercase text-accent">{project.industry}</p>
+                        <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
+                        <p className="text-muted-foreground">{project.description}</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-4 rounded-lg border border-border/40 bg-card space-y-2">
+                          <p className="text-sm font-semibold text-foreground">Problem</p>
+                          <p className="text-sm text-muted-foreground">{project.problem}</p>
+                        </div>
+                        <div className="p-4 rounded-lg border border-border/40 bg-card space-y-2">
+                          <p className="text-sm font-semibold text-foreground">Solution</p>
+                          <p className="text-sm text-muted-foreground">{project.solution}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm font-semibold text-foreground">Tech Stack</p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech) => (
+                            <span key={tech} className="px-2 py-1 rounded-md bg-accent/10 text-accent text-xs">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm font-semibold text-foreground">Client Results</p>
+                        <ul className="space-y-1.5">
+                          {project.clientResults.map((result, idx) => (
+                            <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                              <span>{result}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <blockquote className="p-4 rounded-lg border border-accent/25 bg-accent/5">
+                        <div className="flex items-start gap-2">
+                          <Quote className="h-4 w-4 text-accent mt-0.5" />
+                          <div>
+                            <p className="text-sm text-foreground">{project.testimonial.quote}</p>
+                            <p className="text-xs text-muted-foreground mt-2">
+                              {project.testimonial.author} - {project.testimonial.role}
+                            </p>
+                          </div>
+                        </div>
+                      </blockquote>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -108,7 +189,6 @@ export default function ProjectsPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

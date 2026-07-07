@@ -13,6 +13,7 @@ interface ProjectCardProps {
   imageType?: 'photo' | 'logo';
   websiteUrl?: string;
   technologies: string[];
+  highlights: string[];
   results: string;
 }
 
@@ -25,6 +26,7 @@ export function ProjectCard({
   imageType = 'photo',
   websiteUrl,
   technologies,
+  highlights,
   results,
 }: ProjectCardProps) {
   const href = websiteUrl ?? `/projects/${id}`;
@@ -102,8 +104,21 @@ export function ProjectCard({
             )}
           </div>
 
+          {/* Highlights */}
+          <div className="pt-4 border-t border-border/40 space-y-2">
+            <p className="text-sm text-foreground font-semibold">What We Delivered:</p>
+            <ul className="space-y-1.5">
+              {highlights.slice(0, 2).map((highlight, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Results */}
-          <div className="pt-4 border-t border-border/40">
+          <div className="space-y-2">
             <p className="text-sm text-accent font-semibold mb-2">Key Result:</p>
             <p className="text-sm text-foreground">{results}</p>
           </div>
