@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const contactToEmail = process.env.CONTACT_TO_EMAIL || 'contact@logicminers.au';
-const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Logic Miners <onboarding@resend.dev>';
+const fromEmail = process.env.CONTACT_FROM_EMAIL || process.env.RESEND_FROM_EMAIL;
 const resendApiKey = process.env.RESEND_API_KEY;
 
 export async function POST(request: NextRequest) {
@@ -14,6 +14,15 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    if (!fromEmail) {
+      console.error('Missing CONTACT_FROM_EMAIL/RESEND_FROM_EMAIL');
+      return NextResponse.json(
+        { error: 'Sender email is not configured' },
+        { status: 500 }
+      );
+    }
+
 
     const resend = new Resend(resendApiKey);
 
@@ -60,8 +69,18 @@ ${message}
 
     if (sendResult.error) {
       console.error('Primary email delivery failed:', sendResult.error);
+
+      const resendMessage = sendResult.error.message || 'Unknown Resend error';
+      const resendHint = resendMessage.toLowerCase().includes('sandbox') || resendMessage.toLowerCase().includes('verify')
+        ? 'Resend is likely in test mode. Use a verified sender domain and a permitted recipient email.'
+        : undefined;
+
       return NextResponse.json(
-        { error: 'Unable to send message right now. Please try again shortly.' },
+        {
+          error: 'Unable to send message right now. Please try again shortly.',
+          details: resendMessage,
+          hint: resendHint,
+        },
         { status: 502 }
       );
     }
