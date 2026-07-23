@@ -18,7 +18,10 @@ export async function POST(request: NextRequest) {
     if (!fromEmail) {
       console.error('Missing CONTACT_FROM_EMAIL/RESEND_FROM_EMAIL');
       return NextResponse.json(
-        { error: 'Sender email is not configured' },
+        {
+          error: 'Sender email is not configured',
+          hint: 'Set CONTACT_FROM_EMAIL or RESEND_FROM_EMAIL in your deployment environment variables, then redeploy.',
+        },
         { status: 500 }
       );
     }

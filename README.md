@@ -188,22 +188,48 @@ CONTACT_FROM_EMAIL="Logic Miners <noreply@your-verified-domain.com>"
 
 `CONTACT_FROM_EMAIL` must use a sender address from a domain verified in your Resend account.
 
+You can copy `.env.example` as a starting point.
+
 ## Deployment
 
 ### Deploy to Vercel (Recommended)
 
 1. Push your code to GitHub
 2. Connect your repository to Vercel
-3. Deploy with one click
+3. Add environment variables in Project Settings -> Environment Variables:
+
+```
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
+CONTACT_TO_EMAIL=contact@logicminers.au
+CONTACT_FROM_EMAIL="Logic Miners <noreply@your-verified-domain.com>"
+```
+
+4. Redeploy after saving environment variables
+5. Verify mail configuration after deploy:
+
+```
+GET /api/health/mail
+```
+
+Expected success response:
+
+```
+{ "ok": true, "checks": { ... } }
+```
+
+If any value is false, fix env vars and redeploy.
 
 ### Deploy Elsewhere
 
 ```bash
+# Validate required environment variables first
+npm run verify:env
+
 # Build for production
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm run start
 ```
 
 ## Performance
