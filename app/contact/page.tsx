@@ -173,7 +173,7 @@ export default function ContactPage() {
                 Send an Email
               </a>
               <a
-                href="tel:+61"
+                href="tel:+61430081037"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
               >
                 <Phone className="h-4 w-4" />

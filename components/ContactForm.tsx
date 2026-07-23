@@ -13,6 +13,7 @@ export function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -26,6 +27,7 @@ export function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setSubmitError('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -48,10 +50,14 @@ export function ContactForm() {
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
+        const payload = await response.json().catch(() => null);
+        const errorParts = [payload?.error, payload?.hint, payload?.details].filter(Boolean);
+        setSubmitError(errorParts.join(' ') || 'There was an error sending your message. Please try again.');
         setSubmitStatus('error');
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      setSubmitError('There was an error sending your message. Please try again.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -171,7 +177,7 @@ export function ContactForm() {
 
       {submitStatus === 'error' && (
         <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-          There was an error sending your message. Please try again.
+          {submitError || 'There was an error sending your message. Please try again.'}
         </div>
       )}
 

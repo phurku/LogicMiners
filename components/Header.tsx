@@ -21,6 +21,8 @@ export function Header() {
               alt="Logic Miners"
               width={50}
               height={50}
+              priority
+              sizes="(max-width: 768px) 40px, 50px"
               className="h-10 w-auto relative z-10 transition-transform duration-150 group-hover:scale-[1.02]"
             />
           </Link>
